@@ -1,4 +1,7 @@
-dzh01-hello-springmvc:第一个springmvc项目。
+dzh02-requestmapping:@ReqeustMapping的使用
+
+
+
 需求：用户在页面发一个请求，请求交给springmvc的控制器，
 显示请求的处理结果（helloworld）
 
@@ -28,6 +31,31 @@ dzh01-hello-springmvc:第一个springmvc项目。
 处理流程
 用户访问url http://localhost:8080/com.dzh/Hi-》tomcat（tomcat读取web.xml  url-pattern 对应找到DispacherServlet）->DsipacherServlet(读取spingmvc.xml 扫描Controller)
 ->MyController类中处理返回页面
+
+
+
+
+http://localhost:8080/dzh02-requestmapping/Hello/Hi
+http://localhost:8080/dzh02-requestmapping/Hello/Yes
+
+Mycontroller中可以
+	@RequestMapping("/Hello/Hi")
+	public ModelAndView SayHi() {
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("msg", "Hello World");
+		mv.setViewName("show");
+		return mv;
+	}
+	@RequestMapping("/Hello/Yes")
+	public ModelAndView SayYes() {
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("msg", "yes");
+		mv.setViewName("showYes");
+		return mv;
+	}
+	
+	可以吧Hello抽取出来放到类上
+	
 
 
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+<!-- 声明，注册springmvc的核心对象DispatcherServlet
+     需要在tomcat服务器启动后，创建DispatcherServlet对象的实例。
+     为什么要创建DispatcherServlet对象的实例呢？
+     因为DispatcherServlet在他的创建的过程中，会同时创建springmvc容器对象
+     读取springmvc的配置文件，把这个配置文件中的对象创建好，当用户发起请求时就可以直接使用对象。
+     
+     servlet的初始化会执行init()方法。DispatcherServlet在init()中{
+     //创建容器，读取配置文件
+     WebApplicationContext ctx =new ClassPathXmlApplicationContext("springmvc.xml");
+     //把容器对象放入到ServletContext中
+     getServletContext().setAttribute(key,ctx);
+     }
+     
+ -->
+<servlet>
+	<servlet-name>dzhmvc</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<!-- 自定义springmvc读取的配置文件位置 -->
+	<init-param>
+		<!-- springmvc的配置文件的位置属性 -->
+		<param-name>contextConfigLocation</param-name>
+		<!-- 指定文件位置 -->
+		<param-value>classpath:springmvc.xml</param-value>
+	</init-param>
+	
+	
+	<!-- 在tomcat启动后，创建Servlet对象
+	load-on-startup:表示tomcat启动后创建对象的顺序。它的值是整数，数值越小
+	tomcat创建对象的时间越早。
+	 -->
+	 <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+	<servlet-name>dzhmvc</servlet-name>
+	<!-- 使用框架，url-pattern有两种方式设定
+	1.使用扩展名  *.action   *.do等等 这样当访问url http://localhost:8080/dzhmvc/aa.do 的时候
+	<url-pattern>*.do</url-pattern>
+	就会将请求交给我们的servlet（dzhmvc）
+	
+	2.使用/
+	
+	 -->
+	 <url-pattern>/</url-pattern>
+</servlet-mapping>
+
+	<!-- 声明过滤器 解决乱码 -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- 设置字符编码 -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+			<!-- 强制请求对象（HttpServletRequest）使用encoding编码格式 -->
+			<init-param>
+				<param-name>forceRequestEncoding</param-name>
+				<param-value>true</param-value>
+			</init-param>
+			<!-- 强制应答对象（HttpServletResponsequest）使用encoding编码格式 -->
+			<init-param>
+				<param-name>forceResponseEncoding</param-name>
+				<param-value>true</param-value>
+			</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<!-- /*:强制所有的请求先通过过滤器 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>
