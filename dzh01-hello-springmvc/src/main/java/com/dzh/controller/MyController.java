@@ -4,25 +4,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-//@Controller´´½¨¿ØÖÆÆ÷£¨´¦ÀíÆ÷£©
+//@Controlleråˆ›å»ºæ§åˆ¶å™¨ï¼ˆå¤„ç†å™¨ï¼‰
 @Controller
 public class MyController {
-/*
- * ´¦ÀíÓÃ»§Ìá½»µÄÇëÇó£¬springmvcÖĞÊ¹ÓÃ·½·¨À´´¦Àí 
- * ·½·¨ÊÇ×Ô¶¨ÒåµÄ
- * @RequestMapping:À´×÷ÎªÇëÇóºÍ·½·¨µÄ°ó¶¨
- * ·µ»ØÖµModelAndView
- * Mode :Êı¾İ
- * View:ÊÓÍ¼
- */
+	/*
+	 * å¤„ç†ç”¨æˆ·æäº¤çš„è¯·æ±‚ï¼Œspringmvcä¸­ä½¿ç”¨æ–¹æ³•æ¥å¤„ç† 
+	 * æ–¹æ³•æ˜¯è‡ªå®šä¹‰çš„
+	 * @RequestMapping:æ¥ä½œä¸ºè¯·æ±‚å’Œæ–¹æ³•çš„ç»‘å®š
+	 * è¿”å›å€¼ModelAndView
+	 * Mode :æ•°æ®
+	 * View:è§†å›¾
+	 */
 	@RequestMapping("/Hi")
 	public ModelAndView SayHi() {
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("msg", "Hello World");
 		//mv.setViewName("/show.jsp");
 		//mv.setViewName("/WEB-INF/view/show.jsp");
-		//µ±ÅäÖÃÁËÊÓÍ¼½âÎöÆ÷ºó£¬¿ÉÒÔÊ¹ÓÃÂß¼­Ãû³Æ(ÎÄ¼şÃû)£¬Ö¸¶¨ÊÓÍ¼
-		//¿ò¼Ü»áÊ¹ÓÃÊÓÍ¼½âÎöÆ÷µÄ Ç°×º + Ãû³Æ + ºó×º
+		//å½“é…ç½®äº†è§†å›¾è§£æå™¨åï¼Œå¯ä»¥ä½¿ç”¨é€»è¾‘åç§°(æ–‡ä»¶å)ï¼ŒæŒ‡å®šè§†å›¾
+		//æ¡†æ¶ä¼šä½¿ç”¨è§†å›¾è§£æå™¨çš„ å‰ç¼€ + åç§° + åç¼€
 		mv.setViewName("show");
 		return mv;
 	}
