@@ -8,4 +8,12 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <!-- 声明组件扫描器 扫描@Controller 等等 -->
   <context:component-scan base-package="com.dzh.controller"></context:component-scan>
+  <!-- 声明springmvc中的视图解析器，帮组开发人员设置视图路径
+  另WEB-INF下的jsp是受保护的，直接访问其对应的url 会报404-->
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  	<!-- 前缀：视图的路径 -->
+  	<property name="prefix" value="/WEB-INF/view/"></property>
+  	<!-- 后缀：视图的扩展名 -->
+  	<property name="suffix" value=".jsp"></property>
+  </bean>
 </beans>

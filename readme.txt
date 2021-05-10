@@ -28,3 +28,6 @@ dzh01-hello-springmvc:第一个springmvc项目。
 处理流程
 用户访问url http://localhost:8080/com.dzh/Hi-》tomcat（tomcat读取web.xml  url-pattern 对应找到DispacherServlet）->DsipacherServlet(读取spingmvc.xml 扫描Controller)
 ->MyController类中处理返回页面
+
+
+

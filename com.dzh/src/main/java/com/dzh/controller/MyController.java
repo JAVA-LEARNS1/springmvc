@@ -19,7 +19,11 @@ public class MyController {
 	public ModelAndView SayHi() {
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("msg", "Hello World");
-		mv.setViewName("/show.jsp");
+		//mv.setViewName("/show.jsp");
+		//mv.setViewName("/WEB-INF/view/show.jsp");
+		//当配置了视图解析器后，可以使用逻辑名称(文件名)，指定视图
+		//框架会使用视图解析器的 前缀 + 名称 + 后缀
+		mv.setViewName("show");
 		return mv;
 	}
 }
