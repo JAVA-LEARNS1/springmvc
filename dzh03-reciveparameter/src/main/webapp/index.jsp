@@ -9,6 +9,13 @@
 <p>提交参数给Controller</p>
 <br>
 <form action="receive" method="post">
+	姓名：<input type="text" name ="rname"/>
+	年龄：<input type="text" name ="age"/>
+	<input type="submit" value="提交">
+</form>
+<p>用对象接收参数</p>
+<br>
+<form action="receive1" method="post">
 	姓名：<input type="text" name ="name"/>
 	年龄：<input type="text" name ="age"/>
 	<input type="submit" value="提交">
